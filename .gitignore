@@ -1,14 +1,13 @@
-# Archivos compilados de Python
+# Cache de Python
 __pycache__/
 *.pyc
 *.pyo
 
-# Configuración de entornos virtuales
-venv/
-env/
-
-# Configuración de PyCharm
+# Config PyCharm
 .idea/
 
-# Caché de Git (si existe)
+# Config VS Code
+.vscode/
+
+# Cache Git
 .gitcache/
