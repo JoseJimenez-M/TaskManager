@@ -1,0 +1,13 @@
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Config PyCharm
+.idea/
+
+# Config VS Code
+.vscode/
+
+# Cache Git
+.gitcache/
