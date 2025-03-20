@@ -1,0 +1,14 @@
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Configuración de entornos virtuales
+venv/
+env/
+
+# Configuración de PyCharm
+.idea/
+
+# Caché de Git (si existe)
+.gitcache/
