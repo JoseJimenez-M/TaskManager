@@ -1,5 +1,8 @@
 import tkinter as tk
+import auth
 from tkinter import ttk, messagebox
+from Menu.Menu import form_Menu
+ 
 
 class ModernLogin:
     def __init__(self):
@@ -43,16 +46,31 @@ class ModernLogin:
         self.button_submit.bind("<Enter>", lambda e: self.button_submit.config(bg="#3B7DD8"))
         self.button_submit.bind("<Leave>", lambda e: self.button_submit.config(bg=self.accent_color))
 
+        auth.exist_file()
+
         self.window.mainloop()
 
     def TryLog(self):
         name = self.entry_user.get()
         password = self.entry_password.get()
 
-        if name == "Jose" and password == "123":
-            messagebox.showinfo("Access Granted", "Welcome!")
+        # Validate
+        if auth.validate_user(name, password):
+            role = auth.get_user_role(name)  # get role
+            if role == 1:
+                messagebox.showinfo("Access Granted", "Welcome Admin!")
+            else:
+                messagebox.showinfo("Access Granted", "Welcome User!")
+
+             # Open Main and close login
+            
+            self.window.destroy() 
+            form_Menu()
+
         else:
             messagebox.showerror("Access Denied", "Incorrect Username or Password!")
 
-ModernLogin()
+
+if __name__ == "__main__":
+    ModernLogin()
 
