@@ -5,3 +5,8 @@ Be sure you already have python!
 1.-Yo, Here Jose, u gonna need install Tkinter to work,  "pip install Pillow"
 
 2.- Also install "pip install bcrypt"
+
+Temporal Admin:
+User: Jose
+Password: 123
+Role: 1 (admin)
