@@ -10,3 +10,8 @@ Temporal Admin:
 User: Jose
 Password: 123
 Role: 1 (admin)
+
+Temporal User:
+User: Test
+Password: 123
+Role: 0 (Normal User)

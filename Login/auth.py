@@ -11,7 +11,7 @@ def exist_file():
             json.dump({}, file)
 
 # Create hash
-def create_user(username, password, role=0):
+def create_user(username, password, role):
     users = load_users()
 
     if username in users:

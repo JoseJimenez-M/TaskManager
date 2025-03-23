@@ -16,6 +16,7 @@ class ModernLogin:
         self.bg_color = "#1E1E2E"  # Dark blue
         self.text_color = "#FFFFFF"  # White
         self.accent_color = "#4D96FF"  # Vibrant blue
+        self.red_color = "#F34336"
 
         ## Main frame
         self.frame = tk.Frame(self.window, bg=self.bg_color, padx=20, pady=20)
@@ -46,6 +47,10 @@ class ModernLogin:
         self.button_submit.bind("<Enter>", lambda e: self.button_submit.config(bg="#3B7DD8"))
         self.button_submit.bind("<Leave>", lambda e: self.button_submit.config(bg=self.accent_color))
 
+        ## Close
+        self.button_close = tk.Button(self.frame, text="Close", font=("Poppins", 10, "bold"), fg="white",bg=self.red_color, bd=0, relief="flat", command=self.window.destroy)
+        self.button_close.pack(pady=20, ipadx=20, ipady=5)
+
         auth.exist_file()
 
         self.window.mainloop()
@@ -64,8 +69,8 @@ class ModernLogin:
 
              # Open Main and close login
             
-            self.window.destroy() 
-            form_Menu()
+            self.window.destroy()
+            form_Menu(role)
 
         else:
             messagebox.showerror("Access Denied", "Incorrect Username or Password!")
