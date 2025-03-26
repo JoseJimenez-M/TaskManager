@@ -1,5 +1,6 @@
 import tkinter as tk
 import auth
+import globals
 from tkinter import ttk, messagebox
 from Menu.Menu import form_Menu
  
@@ -7,7 +8,7 @@ from Menu.Menu import form_Menu
 class ModernLogin:
     def __init__(self):
         self.window = tk.Tk()
-        self.window.geometry("400x500")
+        self.window.attributes('-fullscreen', True)
         self.window.title("Modern Login")
         self.window.configure(bg="#1E1E2E")
 
@@ -62,6 +63,7 @@ class ModernLogin:
         # Validate
         if auth.validate_user(name, password):
             role = auth.get_user_role(name)  # get role
+            globals.user_role = role
             if role == 1:
                 messagebox.showinfo("Access Granted", "Welcome Admin!")
             else:

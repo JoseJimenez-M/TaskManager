@@ -3,9 +3,9 @@ from Tasks.CreateTasks import create_task
 
 def form_Menu(role):
     root = tk.Tk()
-    root.geometry("500x400")  # Aumentamos el tamaño para mejorar la disposición
+    root.attributes('-fullscreen', True)
     root.title("Menu")
-    root.config(bg="#1E1E2E")  # Fondo oscuro, el mismo que en el login
+    root.config(bg="#1E1E2E")
 
     # Función para regresar al login
     def back_to_login():
@@ -44,7 +44,7 @@ def form_Menu(role):
     close_button.bind("<Enter>", lambda e: close_button.config(bg="#D9372A"))
     close_button.bind("<Leave>", lambda e: close_button.config(bg="#F34336"))
 
-    # Funciones adicionales para Admin (si el rol es 1)
+    # Func Admin (if role == 1)
     if role == 1:
         labelAdmin = tk.Label(frame, text="Admin Functions:", font=("Poppins", 16), bg="#1E1E2E", fg="#FFFFFF")
         labelAdmin.pack(pady=30)
