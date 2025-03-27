@@ -52,6 +52,21 @@ def get_user_tasks(user_name):
     if conn:
         try:
             cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Tasks WHERE assigned_user = %s", (user_name,))
+            tasks = cursor.fetchall()
+        except mysql.connector.Error as err:
+            messagebox.showinfo("There is something wrong!", f"Error: {err}")
+        finally:
+            cursor.close()
+            conn.close()
+    return tasks
+
+def get_user_tasks_DONE(user_name):
+    conn = connect_db()
+    tasks = []
+    if conn:
+        try:
+            cursor = conn.cursor(dictionary=True)
             cursor.execute("SELECT * FROM Tasks WHERE assigned_user = %s AND state != 'Done'", (user_name,))
             tasks = cursor.fetchall()
         except mysql.connector.Error as err:
@@ -60,3 +75,20 @@ def get_user_tasks(user_name):
             cursor.close()
             conn.close()
     return tasks
+
+def get_task_description(task_id):
+    conn = connect_db()
+    if conn:
+        try:
+            cursor = conn.cursor(dictionary=True)
+            query = "SELECT description FROM Tasks WHERE id = %s"
+            cursor.execute(query, (task_id,))
+            result = cursor.fetchone()
+            return result["description"] if result else "No description available."
+        except mysql.connector.Error as err:
+            print(f"Error fetching task description: {err}")
+            return "Error fetching description."
+        finally:
+            cursor.close()
+            conn.close()
+    return "Database connection error."

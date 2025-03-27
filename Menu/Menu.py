@@ -24,6 +24,11 @@ def form_Menu(role):
         root.destroy()
         complete_task_form()
 
+    def showAllTasks():
+        from Tasks.showAllTasks import showAllTask_form
+        root.destroy()
+        showAllTask_form()
+
     # Contenedor principal (frame)
     frame = tk.Frame(root, bg="#1E1E2E")
     frame.pack(expand=True)
@@ -33,7 +38,7 @@ def form_Menu(role):
     label.pack(pady=30)
 
     # Botón para mostrar todas las tareas
-    showTask_button = tk.Button(frame, text="Show All Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=root.destroy)
+    showTask_button = tk.Button(frame, text="Show All Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=showAllTasks)
     showTask_button.pack(pady=10, ipadx=20, ipady=5)
     showTask_button.bind("<Enter>", lambda e: showTask_button.config(bg="#3B7DD8"))
     showTask_button.bind("<Leave>", lambda e: showTask_button.config(bg=accent_color))

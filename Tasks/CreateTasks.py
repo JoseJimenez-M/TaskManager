@@ -3,10 +3,10 @@ from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
 import globals
 from Login import auth
+from styles import *
 
 
 def create_task():
-
     def back_to_Menu():
         from Menu.Menu import form_Menu
         root.destroy()
@@ -23,47 +23,59 @@ def create_task():
 
         save_task(title, priority, description, state, deadline, assigned_user)
 
-
-
-
     root = tk.Tk()
     root.title("Add Task")
     root.attributes('-fullscreen', True)
+    root.config(bg=bg_color)
 
-    # Labels and inputs
-    ttk.Label(root, text="Title:").pack(anchor="w", padx=10, pady=2)
-    title_entry = ttk.Entry(root, width=40)
-    title_entry.pack(padx=10, pady=2)
+    frame = tk.Frame(root, bg=bg_color)
+    frame.pack(pady=40)
 
-    ttk.Label(root, text="Prio:").pack(anchor="w", padx=10, pady=2)
-    priority_combobox = ttk.Combobox(root, values=["High", "Medium", "Low"])
-    priority_combobox.pack(padx=10, pady=2)
+    def create_label(text):
+        return ttk.Label(frame, text=text, foreground=text_color, background=bg_color, font=("Poppins", 12, "bold"))
+
+    def create_entry(width=40):
+        return tk.Entry(frame, width=width, font=("Poppins", 12), bg=entry_bg_color, fg=entry_fg_color, insertbackground="white", relief="flat")
+
+    create_label("Title:").grid(row=0, column=0, sticky="w", pady=5)
+    title_entry = create_entry()
+    title_entry.grid(row=0, column=1, pady=5, padx=10)
+
+    create_label("Priority:").grid(row=1, column=0, sticky="w", pady=5)
+    priority_combobox = ttk.Combobox(frame, values=["High", "Medium", "Low"], font=("Poppins", 12))
+    priority_combobox.grid(row=1, column=1, pady=5, padx=10)
     priority_combobox.current(1)  # Medium Default
 
-    ttk.Label(root, text="Description:").pack(anchor="w", padx=10, pady=2)
-    description_text = tk.Text(root, height=4, width=40)
-    description_text.pack(padx=10, pady=2)
+    create_label("Description:").grid(row=2, column=0, sticky="w", pady=5)
+    description_text = tk.Text(frame, height=4, width=40, font=("Poppins", 12), bg=entry_bg_color, fg=entry_fg_color, relief="flat")
+    description_text.grid(row=2, column=1, pady=5, padx=10)
 
-    ttk.Label(root, text="State:").pack(anchor="w", padx=10, pady=2)
-    status_combobox = ttk.Combobox(root, values=["On Hold", "Done"])
-    status_combobox.pack(padx=10, pady=2)
+    create_label("State:").grid(row=3, column=0, sticky="w", pady=5)
+    status_combobox = ttk.Combobox(frame, values=["On Hold", "Done"], font=("Poppins", 12))
+    status_combobox.grid(row=3, column=1, pady=5, padx=10)
     status_combobox.current(0)  # On hold as Default
 
-    ttk.Label(root, text="Deadline:").pack(anchor="w", padx=10, pady=2)
-    deadline_entry = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2)
-    deadline_entry.pack(padx=10, pady=2)
+    create_label("Deadline:").grid(row=4, column=0, sticky="w", pady=5)
+    deadline_entry = DateEntry(frame, width=12, background=accent_color, foreground="white", borderwidth=2, font=("Poppins", 12))
+    deadline_entry.grid(row=4, column=1, pady=5, padx=10)
 
     users = auth.load_users()
     user_names = list(users.keys())
 
-    ttk.Label(root, text="Assign to User:").pack(anchor="w", padx=10, pady=2)
-    assigned_user_combobox = ttk.Combobox(root, values=user_names)
-    assigned_user_combobox.pack(padx=10, pady=2)
+    create_label("Assign to User:").grid(row=5, column=0, sticky="w", pady=5)
+    assigned_user_combobox = ttk.Combobox(frame, values=user_names, font=("Poppins", 12))
+    assigned_user_combobox.grid(row=5, column=1, pady=5, padx=10)
 
-    save_button = ttk.Button(root, text="Save Task", command=save)
-    save_button.pack(pady=10)
+    def create_button(text, command, bg_color=accent_color):
+        btn = tk.Button(frame, text=text, command=command, font=("Poppins", 14),
+                        bg=bg_color, fg=text_color, relief="flat", bd=0,
+                        activebackground=button_hover, activeforeground=text_color)
+        return btn
 
-    cancel_button = ttk.Button(root, text="Menu", command=back_to_Menu)
-    cancel_button.pack(pady=10)
+    save_button = create_button("Save Task", save)
+    save_button.grid(row=6, column=0, columnspan=2, pady=15, ipadx=20, ipady=5)
+
+    cancel_button = create_button("Menu", back_to_Menu, bg_color="#F34336")  # Rojo para cancelar
+    cancel_button.grid(row=7, column=0, columnspan=2, pady=5, ipadx=20, ipady=5)
 
     root.mainloop()

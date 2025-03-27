@@ -16,7 +16,7 @@ def complete_task_form():
     root.attributes('-fullscreen', True)
     root.config(bg=bg_color)
 
-    tasks = get_user_tasks_DONE(globals.user_name)
+    tasks = get_tasks()
 
     if not tasks:
         messagebox.showinfo("No tasks", "You have no tasks assigned.")
