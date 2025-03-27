@@ -45,3 +45,18 @@ def get_tasks():
             cursor.close()
             conn.close()
     return tasks
+
+def get_user_tasks(user_name):
+    conn = connect_db()
+    tasks = []
+    if conn:
+        try:
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Tasks WHERE assigned_user = %s AND state != 'Done'", (user_name,))
+            tasks = cursor.fetchall()
+        except mysql.connector.Error as err:
+            messagebox.showinfo("There is something wrong!", f"Error: {err}")
+        finally:
+            cursor.close()
+            conn.close()
+    return tasks

@@ -62,8 +62,11 @@ class ModernLogin:
 
         # Validate
         if auth.validate_user(name, password):
-            role = auth.get_user_role(name)  # get role
+            role = auth.get_user_role(name)
+
             globals.user_role = role
+            globals.user_name = self.entry_user.get()
+
             if role == 1:
                 messagebox.showinfo("Access Granted", "Welcome Admin!")
             else:

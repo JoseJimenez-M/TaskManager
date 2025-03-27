@@ -1,5 +1,4 @@
 import tkinter as tk
-from Tasks.CreateTasks import create_task
 
 def form_Menu(role):
     root = tk.Tk()
@@ -15,8 +14,14 @@ def form_Menu(role):
 
     # Función para crear tarea
     def createTask():
+        from Tasks.CreateTasks import create_task
         root.destroy()
         create_task()
+
+    def completeTask():
+        from Tasks.CompleteTask import complete_task_form
+        root.destroy()
+        complete_task_form()
 
     # Contenedor principal (frame)
     frame = tk.Frame(root, bg="#1E1E2E")
@@ -33,7 +38,7 @@ def form_Menu(role):
     showTask_button.bind("<Leave>", lambda e: showTask_button.config(bg="#4D96FF"))
 
     # Botón para completar tareas
-    completeTask_button = tk.Button(frame, text="Complete Task", font=("Poppins", 14), fg="#FFFFFF", bg="#4D96FF", bd=0, relief="flat", command=root.destroy)
+    completeTask_button = tk.Button(frame, text="Complete Task", font=("Poppins", 14), fg="#FFFFFF", bg="#4D96FF", bd=0, relief="flat", command=completeTask)
     completeTask_button.pack(pady=10, ipadx=20, ipady=5)
     completeTask_button.bind("<Enter>", lambda e: completeTask_button.config(bg="#3B7DD8"))
     completeTask_button.bind("<Leave>", lambda e: completeTask_button.config(bg="#4D96FF"))
