@@ -1,11 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
 import mysql.connector
 import globals
-from Tasks.db_queries import get_user_tasks
-from Tasks.db_queries import connect_db
-
+from Tasks.db_queries import *
+from styles import *
 
 def complete_task_form():
 
@@ -17,6 +14,7 @@ def complete_task_form():
     root = tk.Tk()
     root.title("Complete Task")
     root.attributes('-fullscreen', True)
+    root.config(bg=bg_color)
 
     tasks = get_user_tasks(globals.user_name)
 
@@ -25,16 +23,42 @@ def complete_task_form():
         back_to_Menu()
         return
 
-    tree = ttk.Treeview(root, columns=("ID", "Title", "Priority", "State"), show="headings")
+    style = ttk.Style()
+
+
+    style.configure("Custom.Treeview",
+                    background="#A9C6E5",
+                    foreground="#1a1a1f",
+                    fieldbackground="#A9C6E5",
+                    font=("Poppins", 12))
+
+    style.configure("Custom.Treeview.Heading",
+                    font=("Poppins", 18, "bold"),
+                    foreground="#A9C6E5"
+                    )
+
+    tree = ttk.Treeview(root, columns=("ID", "Title", "Priority", "State"), show="headings", height=8,
+                        style="Custom.Treeview")
+
     tree.heading("ID", text="ID")
     tree.heading("Title", text="Title")
     tree.heading("Priority", text="Priority")
     tree.heading("State", text="State")
 
-    for task in tasks:
-        tree.insert("", "end", values=(task["id"], task["title"], task["priority"], task["state"]))
+    # Configurar las columnas
+    tree.column("#1", stretch=tk.NO, width=200)
+    tree.column("#2", stretch=tk.NO, width=350)
+    tree.column("#3", stretch=tk.NO, width=350)
+    tree.column("#4", stretch=tk.NO, width=350)
 
-    tree.pack(pady=20)
+    tree.tag_configure("even", background="#A9C6E5")
+    tree.tag_configure("odd", background="#C8D9EB")
+
+    for index, task in enumerate(tasks):
+        tag = "even" if index % 2 == 0 else "odd"
+        tree.insert("", "end", values=(task["id"], task["title"], task["priority"], task["state"]), tags=(tag,))
+
+    tree.pack(pady=(240, 80))
 
     def complete_task():
         selected_item = tree.selection()
@@ -57,11 +81,14 @@ def complete_task_form():
                 cursor.close()
                 conn.close()
 
-
-    complete_button = ttk.Button(root, text="Complete Task", command=complete_task)
+    complete_button = tk.Button(root, text="Complete Task", command=complete_task, font=("Poppins", 14),
+                                bg=accent_color, fg=text_color, relief="flat", bd=0,
+                                activebackground=accent_color, activeforeground=text_color)
     complete_button.pack(pady=10)
 
-    close_button = ttk.Button(root, text="Back", command=back_to_Menu)
+    close_button = tk.Button(root, text="Back", command=back_to_Menu, font=("Poppins", 14),
+                             bg=red_color, fg=text_color, relief="flat", bd=0,
+                             activebackground=red_color, activeforeground=text_color)
     close_button.pack(pady=10)
 
     root.mainloop()

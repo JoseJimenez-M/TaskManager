@@ -3,7 +3,7 @@ import auth
 import globals
 from tkinter import ttk, messagebox
 from Menu.Menu import form_Menu
- 
+from styles import *
 
 class ModernLogin:
     def __init__(self):
@@ -13,11 +13,11 @@ class ModernLogin:
         self.window.configure(bg="#1E1E2E")
 
         ## General styles
-        self.general_font = ("Poppins", 14)
-        self.bg_color = "#1E1E2E"  # Dark blue
-        self.text_color = "#FFFFFF"  # White
-        self.accent_color = "#4D96FF"  # Vibrant blue
-        self.red_color = "#F34336"
+        self.general_font = general_font
+        self.bg_color = bg_color
+        self.text_color = text_color
+        self.accent_color = accent_color
+        self.red_color = red_color
 
         ## Main frame
         self.frame = tk.Frame(self.window, bg=self.bg_color, padx=20, pady=20)
