@@ -37,25 +37,27 @@ def complete_task_form():
                     foreground="#A9C6E5"
                     )
 
-    tree = ttk.Treeview(root, columns=("ID", "Title", "Priority", "State"), show="headings", height=8,
+    tree = ttk.Treeview(root, columns=("ID", "Title", "Priority", "State","Deadline"), show="headings", height=8,
                         style="Custom.Treeview")
 
     tree.heading("ID", text="ID")
     tree.heading("Title", text="Title")
     tree.heading("Priority", text="Priority")
     tree.heading("State", text="State")
+    tree.heading("Deadline", text="Deadline")
 
     tree.column("#1", stretch=tk.NO, width=200)
     tree.column("#2", stretch=tk.NO, width=350)
     tree.column("#3", stretch=tk.NO, width=350)
     tree.column("#4", stretch=tk.NO, width=350)
+    tree.column("#4", stretch=tk.NO, width=300)
 
     tree.tag_configure("even", background="#A9C6E5")
     tree.tag_configure("odd", background="#C8D9EB")
 
     for index, task in enumerate(tasks):
         tag = "even" if index % 2 == 0 else "odd"
-        tree.insert("", "end", values=(task["id"], task["title"], task["priority"], task["state"]), tags=(tag,))
+        tree.insert("", "end", values=(task["id"], task["title"], task["priority"], task["state"], task["deadline"]), tags=(tag,))
 
     tree.pack(pady=(240, 80))
 
@@ -66,19 +68,8 @@ def complete_task_form():
             return
 
         task_id = tree.item(selected_item)["values"][0]
+        change_ToDone(task_id)
 
-        conn = connect_db()
-        if conn:
-            try:
-                cursor = conn.cursor()
-                cursor.execute("UPDATE Tasks SET state = 'Done' WHERE id = %s", (task_id,))
-                conn.commit()
-                messagebox.showinfo("Task Completed", "Task marked as completed.")
-            except mysql.connector.Error as err:
-                messagebox.showerror("Error", f"Error completing task: {err}")
-            finally:
-                cursor.close()
-                conn.close()
 
     complete_button = tk.Button(root, text="Complete Task", command=complete_task, font=("Poppins", 14),
                                 bg=accent_color, fg=text_color, relief="flat", bd=0,

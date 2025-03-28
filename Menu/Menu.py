@@ -29,6 +29,11 @@ def form_Menu(role):
         root.destroy()
         showAllTask_form()
 
+    def updateTasks():
+        from Tasks.updateTask import update_task_form
+        root.destroy()
+        update_task_form()
+
     # Contenedor principal (frame)
     frame = tk.Frame(root, bg="#1E1E2E")
     frame.pack(expand=True)
@@ -75,7 +80,7 @@ def form_Menu(role):
         deleteTask_button.bind("<Enter>", lambda e: deleteTask_button.config(bg="#3B7DD8"))
         deleteTask_button.bind("<Leave>", lambda e: deleteTask_button.config(bg=accent_color))
 
-        updateTask_button = tk.Button(frame, text="Update Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=root.destroy)
+        updateTask_button = tk.Button(frame, text="Update Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=updateTasks)
         updateTask_button.pack(pady=10, ipadx=20, ipady=5)
         updateTask_button.bind("<Enter>", lambda e: updateTask_button.config(bg="#3B7DD8"))
         updateTask_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))

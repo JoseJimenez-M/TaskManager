@@ -92,3 +92,36 @@ def get_task_description(task_id):
             cursor.close()
             conn.close()
     return "Database connection error."
+
+def change_ToDone(task_id):
+    conn = connect_db()
+    if conn:
+        try:
+            cursor = conn.cursor()
+            cursor.execute("UPDATE Tasks SET state = 'Done' WHERE id = %s", (task_id,))
+            conn.commit()
+            messagebox.showinfo("Task Completed", "Task marked as completed.")
+        except mysql.connector.Error as err:
+            messagebox.showerror("Error", f"Error completing task: {err}")
+        finally:
+            cursor.close()
+            conn.close()
+
+def update_task_query(task_id, title, priority, description, state, deadline, assigned_user):
+    try:
+        conn = connect_db()
+        if conn:
+            cursor = conn.cursor()
+            update_query = """
+                UPDATE Tasks
+                SET title = %s, priority = %s, description = %s, state = %s, deadline = %s, assigned_user = %s
+                WHERE id = %s
+            """
+            cursor.execute(update_query, (title, priority, description, state, deadline, assigned_user, task_id))
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return True
+    except mysql.connector.Error as err:
+        print(f"Error updating task: {err}")
+        return False
