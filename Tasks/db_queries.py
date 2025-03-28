@@ -125,3 +125,22 @@ def update_task_query(task_id, title, priority, description, state, deadline, as
     except mysql.connector.Error as err:
         print(f"Error updating task: {err}")
         return False
+
+def deleteTask(task_id):
+    try:
+        conn = connect_db()
+        if conn:
+            cursor = conn.cursor()
+            deleteQuery = "DELETE FROM tasks WHERE id = %s"
+
+            cursor.execute(deleteQuery, (task_id,))
+            conn.commit()
+            cursor.close()
+            conn.close()
+            messagebox.showinfo("Done", "Task deleted successfully!")
+            return True
+    except mysql.connector.Error as err:
+        messagebox.showinfo("UhUh", f"Error: {err}")
+        return False
+
+

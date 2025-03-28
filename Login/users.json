@@ -1,1 +1,1 @@
-{"Jose": {"password": "$2b$12$Cl1Bjp9uAC9NV82TnJdzTelkHuQFeUjnpk5UWX/YywQawNyLvBkzi", "role": 1}, "Test": {"password": "$2b$12$oAHvtMDYTZyxCuYkPwfcJO.UQpq39OZDPNiuvDKq60.mYQdHD0mHa", "role": 0}}
+{"Jose": {"password": "$2b$12$Cl1Bjp9uAC9NV82TnJdzTelkHuQFeUjnpk5UWX/YywQawNyLvBkzi", "role": 1}, "Test": {"password": "$2b$12$oAHvtMDYTZyxCuYkPwfcJO.UQpq39OZDPNiuvDKq60.mYQdHD0mHa", "role": 0}, "Pasante": {"password": "$2b$12$Z4w64I6LdVsqOJY7zDOCPeb9S79ErmJ7KXd2bkvAKg7fd.YGbKv6S", "role": 0}}

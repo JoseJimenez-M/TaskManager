@@ -34,6 +34,16 @@ def form_Menu(role):
         root.destroy()
         update_task_form()
 
+    def deleteTasks():
+        from Tasks.DeleteTask import Delete_task_form
+        root.destroy()
+        Delete_task_form()
+
+    def createUser():
+        from Login.createUser import create_user_form
+        root.destroy()
+        create_user_form()
+
     # Contenedor principal (frame)
     frame = tk.Frame(root, bg="#1E1E2E")
     frame.pack(expand=True)
@@ -65,7 +75,7 @@ def form_Menu(role):
         labelAdmin = tk.Label(frame, text="Admin Functions:", font=("Poppins", 16), bg=bg_color, fg=text_color)
         labelAdmin.pack(pady=30)
 
-        addUser_button = tk.Button(frame, text="Add User", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=root.destroy)
+        addUser_button = tk.Button(frame, text="Add User", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=createUser)
         addUser_button.pack(pady=10, ipadx=20, ipady=5)
         addUser_button.bind("<Enter>", lambda e: addUser_button.config(bg="#3B7DD8"))
         addUser_button.bind("<Leave>", lambda e: addUser_button.config(bg=accent_color))
@@ -75,7 +85,7 @@ def form_Menu(role):
         createTask_button.bind("<Enter>", lambda e: createTask_button.config(bg="#3B7DD8"))
         createTask_button.bind("<Leave>", lambda e: createTask_button.config(bg=accent_color))
 
-        deleteTask_button = tk.Button(frame, text="Delete Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=root.destroy)
+        deleteTask_button = tk.Button(frame, text="Delete Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=deleteTasks)
         deleteTask_button.pack(pady=10, ipadx=20, ipady=5)
         deleteTask_button.bind("<Enter>", lambda e: deleteTask_button.config(bg="#3B7DD8"))
         deleteTask_button.bind("<Leave>", lambda e: deleteTask_button.config(bg=accent_color))

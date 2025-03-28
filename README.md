@@ -23,6 +23,11 @@ User: Test
 Password: 123
 Role: 0 (Normal User)
 
+Temporal User:
+User: Pasante
+Password: 123
+Role: 0 (Normal User)
+
 --------------------------------
 Mysql Database Script:
 
