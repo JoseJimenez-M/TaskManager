@@ -53,13 +53,13 @@ def form_Menu(role):
     label.pack(pady=30)
 
     # Botón para mostrar todas las tareas
-    showTask_button = tk.Button(frame, text="Show All Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=showAllTasks)
+    showTask_button = tk.Button(frame, text="Show All Task (On hold and Done)", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=showAllTasks)
     showTask_button.pack(pady=10, ipadx=20, ipady=5)
     showTask_button.bind("<Enter>", lambda e: showTask_button.config(bg="#3B7DD8"))
     showTask_button.bind("<Leave>", lambda e: showTask_button.config(bg=accent_color))
 
     # Botón para completar tareas
-    completeTask_button = tk.Button(frame, text="Complete Task", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=completeTask)
+    completeTask_button = tk.Button(frame, text="Complete Task (To do)", font=general_font, fg=text_color, bg=accent_color, bd=0, relief="flat", command=completeTask)
     completeTask_button.pack(pady=10, ipadx=20, ipady=5)
     completeTask_button.bind("<Enter>", lambda e: completeTask_button.config(bg="#3B7DD8"))
     completeTask_button.bind("<Leave>", lambda e: completeTask_button.config(bg=accent_color))
