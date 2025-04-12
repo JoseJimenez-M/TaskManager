@@ -41,10 +41,12 @@ pip install tkcalendar
 pip install mysql-connector-python
 pip install pandas
 pip install openpyxl
+```
 ---
-Setting Up the Database
+### Setting Up the Database
 TaskManager uses MySQL to store tasks. Use the following script to create the database and tables:
 
+```
 CREATE DATABASE TaskManager;
 USE TaskManager;
 
@@ -64,9 +66,9 @@ CREATE TABLE Users (
     role INT,
     chat_id VARCHAR(50)
 );
-
+```
 ---
-📦 Tech Stack
+## 📦 Tech Stack
 Language: Python
 
 Framework: Tkinter (for UI)
@@ -77,7 +79,7 @@ Telegram Integration: Telegram Bot API
 
 Libraries: Pillow, bcrypt, tkcalendar, mysql-connector-python, pandas, openpyxl
 
-📝 License
+## 📝 License
 This project is licensed under the MIT License. You are free to use, modify, and distribute the code as long as appropriate credit is given.
 
 For commercial use or licensing inquiries, please contact: [jimenez331375@gmail.com]
