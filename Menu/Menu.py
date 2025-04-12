@@ -1,6 +1,4 @@
 import tkinter as tk
-
-from Report.Report import create_Report
 from styles import *
 
 def form_Menu(role):
@@ -115,7 +113,7 @@ def form_Menu(role):
         ManageNotifications_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))
 
         generateReport_button = tk.Button(frame, text="Generate Report", font=general_font, fg=text_color, bg=accent_color,
-                                      bd=0, relief="flat", command=create_Report)
+                                      bd=0, relief="flat", command=generateReport)
         generateReport_button.pack(pady=10, ipadx=20, ipady=5)
         generateReport_button.bind("<Enter>", lambda e: updateTask_button.config(bg="#3B7DD8"))
         generateReport_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))

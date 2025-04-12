@@ -5,6 +5,7 @@ import requests
 from Login.auth import load_users
 from Tasks.db_queries import *
 from Keys import TELEGRAM_BOT_TOKEN
+import globals
 
 def send_telegram_message(chat_id, message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"

@@ -67,7 +67,6 @@ class ModernLogin:
 
             globals.user_role = role
             globals.user_name = self.entry_user.get()
-            globals.user_role = user_role
 
             if role == 1:
                 messagebox.showinfo("Access Granted", "Welcome Admin!")
