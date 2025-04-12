@@ -1,2 +1,2 @@
 
-TELEGRAM_BOT_TOKEN = "8032695282:AAFJl7hwjN-gAqZRfTNjzPgG_ct991FlVdY"
+TELEGRAM_BOT_TOKEN = "Here it suposse to be yout key"
