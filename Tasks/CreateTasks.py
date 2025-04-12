@@ -4,6 +4,7 @@ from tkcalendar import DateEntry
 import globals
 from Login import auth
 from styles import *
+from Notifications.Notifications import notify_user_new_task
 
 
 def create_task():
@@ -22,6 +23,7 @@ def create_task():
         assigned_user = assigned_user_combobox.get()
 
         save_task(title, priority, description, state, deadline, assigned_user)
+        notify_user_new_task(assigned_user,title,deadline)
 
     root = tk.Tk()
     root.title("Add Task")

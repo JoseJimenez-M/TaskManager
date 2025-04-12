@@ -20,7 +20,8 @@ def create_user(username, password, role):
     hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())  # hash
     users[username] = {
         "password": hashed_password.decode('utf-8'),
-        "role": role
+        "role": role,
+        "chat_id": None
     }  
     save_users(users)
 
@@ -34,7 +35,7 @@ def load_users():
 # Save users
 def save_users(users):
     with open(USERS_FILE, 'w') as file:
-        json.dump(users, file)
+        json.dump(users, file, indent=2)
 
 # Verify user and password
 def validate_user(username, password):

@@ -3,6 +3,7 @@ import auth
 import globals
 from tkinter import ttk, messagebox
 from Menu.Menu import form_Menu
+from globals import user_role
 from styles import *
 
 class ModernLogin:
@@ -66,6 +67,7 @@ class ModernLogin:
 
             globals.user_role = role
             globals.user_name = self.entry_user.get()
+            globals.user_role = user_role
 
             if role == 1:
                 messagebox.showinfo("Access Granted", "Welcome Admin!")

@@ -1,6 +1,7 @@
 from tkinter import messagebox
 import mysql.connector
 from config import db_config
+from datetime import datetime, timedelta
 
 
 def connect_db():
@@ -142,5 +143,36 @@ def deleteTask(task_id):
     except mysql.connector.Error as err:
         messagebox.showinfo("UhUh", f"Error: {err}")
         return False
+
+def get_user_due_tasks(user_name):
+    conn = connect_db()
+    tasks = []
+    today = datetime.now().date()
+    if conn:
+        try:
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Tasks WHERE deadline < %s AND state != 'Done' AND assigned_user = %s", (today, user_name))
+            tasks = cursor.fetchall()
+        finally:
+            cursor.close()
+            conn.close()
+    return tasks
+
+
+def get_user_upcoming_tasks(user_name):
+    conn = connect_db()
+    tasks = []
+    today = datetime.now().date()
+    tomorrow = today + timedelta(days=1)
+    if conn:
+        try:
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM Tasks WHERE deadline BETWEEN %s AND %s AND state != 'Done' AND assigned_user = %s", (today, tomorrow, user_name))
+            tasks = cursor.fetchall()
+        finally:
+            cursor.close()
+            conn.close()
+    return tasks
+
 
 

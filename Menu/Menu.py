@@ -1,4 +1,6 @@
 import tkinter as tk
+
+from Report.Report import create_Report
 from styles import *
 
 def form_Menu(role):
@@ -43,6 +45,16 @@ def form_Menu(role):
         from Login.createUser import create_user_form
         root.destroy()
         create_user_form()
+
+    def manageNotifications():
+        from Notifications.Notifications import notifications_form
+        root.destroy()
+        notifications_form()
+
+    def generateReport():
+        from Report.Report import create_Report
+        create_Report()
+
 
     # Contenedor principal (frame)
     frame = tk.Frame(root, bg="#1E1E2E")
@@ -95,4 +107,16 @@ def form_Menu(role):
         updateTask_button.bind("<Enter>", lambda e: updateTask_button.config(bg="#3B7DD8"))
         updateTask_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))
 
+        ##Last buttons, Notifications and Report
+        ManageNotifications_button = tk.Button(frame, text="Manage Notifications", font=general_font, fg=text_color, bg=accent_color,
+                                      bd=0, relief="flat", command=manageNotifications)
+        ManageNotifications_button.pack(pady=10, ipadx=20, ipady=5)
+        ManageNotifications_button.bind("<Enter>", lambda e: updateTask_button.config(bg="#3B7DD8"))
+        ManageNotifications_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))
+
+        generateReport_button = tk.Button(frame, text="Generate Report", font=general_font, fg=text_color, bg=accent_color,
+                                      bd=0, relief="flat", command=create_Report)
+        generateReport_button.pack(pady=10, ipadx=20, ipady=5)
+        generateReport_button.bind("<Enter>", lambda e: updateTask_button.config(bg="#3B7DD8"))
+        generateReport_button.bind("<Leave>", lambda e: updateTask_button.config(bg=accent_color))
     root.mainloop()
