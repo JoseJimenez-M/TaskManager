@@ -1,2 +1,2 @@
 
-TELEGRAM_BOT_TOKEN = "Your telegtramKey Here!"
+TELEGRAM_BOT_TOKEN = "Your telegramKey Here!"
